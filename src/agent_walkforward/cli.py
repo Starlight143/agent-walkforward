@@ -7,6 +7,7 @@ import json
 import sys
 
 from . import __version__
+from .api import report_to_dict
 from .evaluate import evaluate
 from .loader import LoaderError, load_records
 from .split import walk_forward_splits
@@ -39,16 +40,7 @@ def _run(args: argparse.Namespace) -> int:
         return 2
 
     if args.json:
-        payload = {
-            "verdict": report.verdict,
-            "is_mean": report.is_mean,
-            "oos_mean": report.oos_mean,
-            "mean_gap": report.mean_gap,
-            "degradation": report.degradation,
-            "params": report.params,
-            "folds": [vars(f) for f in report.folds],
-        }
-        print(json.dumps(payload, indent=2))
+        print(json.dumps(report_to_dict(report, len(records)), indent=2))
         return 0
 
     print(f"agent-walkforward {__version__}  |  records={len(records)}")

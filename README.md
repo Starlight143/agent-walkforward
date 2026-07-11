@@ -106,6 +106,51 @@ agent-walkforward run --traces run.csv \
 That makes it a drop-in post-processor for agentevals OTel exports, RAGAS
 result tables, DeepEval logs, or a hand-rolled JSONL.
 
+## Agent integrations
+
+Built to be called by coding agents (Claude Code, Cursor, Cline, ...), three ways:
+
+**1. One-call Python API** — returns a plain JSON-serializable dict:
+
+```python
+from agent_walkforward import analyze
+
+result = analyze("evals.jsonl", n_splits=5, oos_size=10, embargo=2)
+# also accepts a list of dicts or EvalRecord objects instead of a path
+print(result["verdict"], result["mean_gap"])
+```
+
+**2. CLI with `--json`** — for agents that shell out and parse stdout:
+
+```bash
+agent-walkforward run --traces evals.jsonl --json
+```
+
+**3. MCP server** — expose it as a native tool to any MCP client:
+
+```bash
+pip install "agent-walkforward[mcp]"
+agent-walkforward-mcp          # stdio transport
+```
+
+Example Claude Desktop / Cursor config:
+
+```json
+{
+  "mcpServers": {
+    "agent-walkforward": { "command": "agent-walkforward-mcp" }
+  }
+}
+```
+
+The server exposes one tool, `walkforward_analyze`, taking either a `traces_path`
+or inline `records`.
+
+**Claude Code skill** — a ready-made skill lives in
+[`integrations/claude-code-skill/`](integrations/claude-code-skill/SKILL.md).
+Copy it to `~/.claude/skills/agent-walkforward/` and Claude Code will reach for
+it whenever you ask "are these eval gains real or overfit?".
+
 ## When this helps — and when it doesn't
 
 Walk-forward assumes your eval records have **temporal / versioned order** and

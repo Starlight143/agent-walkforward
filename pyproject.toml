@@ -39,6 +39,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=7"]
+mcp = ["mcp>=1.2"]
 
 [project.urls]
 Homepage = "https://github.com/Starlight143/agent-walkforward"
@@ -47,6 +48,7 @@ Issues = "https://github.com/Starlight143/agent-walkforward/issues"
 
 [project.scripts]
 agent-walkforward = "agent_walkforward.cli:main"
+agent-walkforward-mcp = "agent_walkforward.mcp_server:main"
 
 [tool.hatch.version]
 path = "src/agent_walkforward/__init__.py"
