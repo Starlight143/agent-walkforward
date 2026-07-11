@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-walkforward"
+dynamic = ["version"]
+description = "Walk-forward / out-of-sample validation for agent evals — detect eval-set overfitting the way quants detect backtest overfitting."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Starlight143" }]
+keywords = [
+    "ai-agents",
+    "llm",
+    "evaluation",
+    "walk-forward",
+    "out-of-sample",
+    "overfitting",
+    "backtesting",
+    "agentevals",
+    "mlops",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/Starlight143/agent-walkforward"
+Repository = "https://github.com/Starlight143/agent-walkforward"
+Issues = "https://github.com/Starlight143/agent-walkforward/issues"
+
+[project.scripts]
+agent-walkforward = "agent_walkforward.cli:main"
+
+[tool.hatch.version]
+path = "src/agent_walkforward/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_walkforward"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
