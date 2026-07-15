@@ -15,7 +15,7 @@ your time-ordered eval records into in-sample (IS) and out-of-sample (OOS)
 folds, then measures how much the score degrades out-of-sample. A large,
 persistent IS→OOS gap means your gains are overfit to the eval set.
 
-- **Zero dependencies.** Pure standard library — no dependency tree to fight.
+- **Zero dependencies.** Pure standard library. `pip install` and go.
 - **Bring your own eval tool.** Reads JSONL / JSON / CSV with configurable
   field names — it sits *on top of* whatever you already use, not instead of it.
 - **Leakage-aware.** Purge (drop IS records sharing a session/group with OOS)
@@ -23,8 +23,11 @@ persistent IS→OOS gap means your gains are overfit to the eval set.
 
 ## Install
 
-> ⚠️ Not yet published to PyPI — install from source until the first PyPI
-> release goes out (tracked in [CHANGELOG](CHANGELOG.md)).
+```bash
+pip install agent-walkforward
+```
+
+Or from source:
 
 ```bash
 git clone https://github.com/Starlight143/agent-walkforward
@@ -126,7 +129,7 @@ agent-walkforward run --traces evals.jsonl --json
 **3. MCP server** — expose it as a native tool to any MCP client:
 
 ```bash
-pip install -e ".[mcp]"        # from a source checkout, see Install above
+pip install "agent-walkforward[mcp]"
 agent-walkforward-mcp          # stdio transport
 ```
 
