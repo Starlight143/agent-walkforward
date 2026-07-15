@@ -11,7 +11,7 @@ from .evaluate import evaluate
 from .loader import load_records
 from .api import analyze, report_to_dict
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 __all__ = [
     "EvalRecord",

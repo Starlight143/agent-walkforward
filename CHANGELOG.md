@@ -4,6 +4,21 @@ All notable changes to this project are documented here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/); this project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] - 2026-07-16
+
+No code changes. First release actually published to PyPI — v0.1.0/v0.1.1
+were GitHub-only; `pip install agent-walkforward` was documented but 404'd.
+
+### Fixed
+- README no longer claims `pip install agent-walkforward` works before the
+  package exists on PyPI; leads with source install instead.
+
+### Added
+- `.github/workflows/publish.yml` — publishes to PyPI via Trusted Publishing
+  (OIDC) on every GitHub Release.
+- `PUBLISHING.md` documenting the one-time PyPI/GitHub setup and the release
+  cadence going forward.
+
 ## [0.1.1] - 2026-07-11
 
 ### Added
@@ -32,5 +47,6 @@ Initial release.
 - `agent-walkforward run` CLI with table and `--json` output.
 - Zero runtime dependencies (standard library only).
 
+[0.1.2]: https://github.com/Starlight143/agent-walkforward/releases/tag/v0.1.2
 [0.1.1]: https://github.com/Starlight143/agent-walkforward/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Starlight143/agent-walkforward/releases/tag/v0.1.0
